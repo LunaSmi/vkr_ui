@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vkr_ui/data/auth_service.dart';
+import 'package:vkr_ui/data/services/auth_service.dart';
 import 'package:vkr_ui/ui/app_navigator.dart';
 import 'package:provider/provider.dart';
 

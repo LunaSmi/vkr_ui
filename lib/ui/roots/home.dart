@@ -1,6 +1,6 @@
 import 'package:vkr_ui/ui/app_navigator.dart';
 import 'package:flutter/material.dart';
-import '../../data/auth_service.dart';
+import '../../data/services/auth_service.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key, required this.title}) : super(key: key);
