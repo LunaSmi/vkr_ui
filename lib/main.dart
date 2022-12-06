@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       onGenerateRoute: (settings) =>
           AppNavigator.onGeneratedRoutes(settings, context),
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.blue,
       ),
       home:  LoaderWidget.create()  //LoaderWidget(),
       //home: const MyHomePage(title: 'Flutter Demo Home Page'),

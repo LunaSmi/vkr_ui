@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'auth_client.dart';
+part of 'api_client.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,8 +8,8 @@ part of 'auth_client.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
-class _AuthClient implements AuthClient {
-  _AuthClient(
+class _ApiClient implements ApiClient {
+  _ApiClient(
     this._dio, {
     this.baseUrl,
   });
@@ -19,52 +19,25 @@ class _AuthClient implements AuthClient {
   String? baseUrl;
 
   @override
-  Future<LoginResponse?> getToken(body) async {
+  Future<User?> getUser() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>?>(_setStreamType<LoginResponse>(Options(
-      method: 'POST',
+    final _result =
+        await _dio.fetch<Map<String, dynamic>?>(_setStreamType<User>(Options(
+      method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/api/Auth/Login',
+              '/api/Users/GetCurrentUser',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value =
-        _result.data == null ? null : LoginResponse.fromJson(_result.data!);
-    return value;
-  }
-
-  @override
-  Future<LoginResponse?> refreshToken(body) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>?>(_setStreamType<LoginResponse>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              '/api/Auth/RefreshToken',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value =
-        _result.data == null ? null : LoginResponse.fromJson(_result.data!);
+    final value = _result.data == null ? null : User.fromJson(_result.data!);
     return value;
   }
 

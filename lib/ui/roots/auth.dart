@@ -59,23 +59,26 @@ class _ViewModel extends ChangeNotifier{
         (state.password?.isNotEmpty ?? false);
   }
 
-   void login() async {
+  void login() async {
     state = state.copyWith(isLoading: true);
-    await Future.delayed(const Duration(seconds: 2))
-        .then((value) => {state = state.copyWith(isLoading: false)});
 
     try {
-      await _authService
-        .auth(state.login, state.password)
-        .then((value) => AppNavigator.toLoader());
-      } on NoNetworkException {
-        state = state.copyWith(errorText: "нет сети");
-      } on WrongCredentionalExceprion {
-        state = state.copyWith(errorText: "не правильный логин или пароль");
+      await _authService.auth(state.login, state.password).then((value) {
+        AppNavigator.toLoader()
+            .then((value) => {state = state.copyWith(isLoading: false)});
+      });
+    } on NoNetworkException {
+      state = state.copyWith(errorText: "нет сети");
+    } on WrongCredentionalException {
+      state = state.copyWith(errorText: "не правильный логин или пароль");
+    } on ServerException {
+      state = state.copyWith(errorText: "произошла ошибка на сервере");
     }
-  } 
+  }
+  
+} 
 
-}
+
 
 
 
